@@ -30,6 +30,7 @@ public class AnteproyectoService implements IAnteproyectoService{
     @Autowired
         private DocenteRepository docenteRepository;
 
+
     @Override
     @Transactional
     public Anteproyecto crearAnteproyecto(AnteproyectoRequest request) throws Exception {
@@ -60,9 +61,22 @@ public class AnteproyectoService implements IAnteproyectoService{
             // 4️⃣ Guardar el anteproyecto en la BD
             Anteproyecto anteproyectoGuardado = anteproyectoRepository.save(anteproyecto);
 
-            // 5️⃣ Enviar notificación al microservicio de notificaciones
-            // Puedes enviar el objeto completo o solo los correos (recomendado: solo los datos necesarios)
-            rabbitTemplate.convertAndSend(RabbitMQConfig.ANTEPROYECTO_QUEUE, request);
+            // 5️⃣ Construir un nuevo DTO con la info completa (incluyendo departamentos)
+            AnteproyectoRequest notificacionDTO = new AnteproyectoRequest();
+            notificacionDTO.setId(anteproyectoGuardado.getId());
+            notificacionDTO.setTitulo(anteproyectoGuardado.getTitulo());
+            notificacionDTO.setCorreosEstudiantes(
+                    estudiantes.stream().map(Estudiante::getCorreo).toList()
+            );
+            notificacionDTO.setCorreosDocentes(
+                    docentes.stream().map(Docente::getCorreo).toList()
+            );
+            notificacionDTO.setDepartamentosDocentes(
+                    docentes.stream().map(Docente::getDepartamento).toList()
+            );
+
+            // 6️⃣ Enviar notificación al microservicio de notificaciones
+            rabbitTemplate.convertAndSend(RabbitMQConfig.ANTEPROYECTO_QUEUE, notificacionDTO);
 
             return anteproyectoGuardado;
 
