@@ -12,4 +12,5 @@ public class AnteproyectoRequest {
     private String titulo;
     private List<String> correosEstudiantes;
     private List<String> correosDocentes;
+    private List<String> departamentosDocentes;
 }

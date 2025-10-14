@@ -12,7 +12,7 @@ public class RabbitMQConfig {
     public static final String ANTEPROYECTO_QUEUE = "anteproyectoQueue";
 
     @Bean
-    public Queue anteproyectoQueue() {
+    public Queue pruebaQueue() {
         return new Queue(ANTEPROYECTO_QUEUE, true);
     }
     /*
