@@ -23,8 +23,8 @@ public class NotificationService {
         log.info("🚀 Procesando notificaciones para el anteproyecto: {}", anteproyecto.getTitulo());
 
         // === Notificar a cada jefe de departamento ===
-        if (anteproyecto.getDepartamento() != null && !anteproyecto.getDepartamento().isEmpty()) {
-            for (String nombreDepto : anteproyecto.getDepartamento()) {
+        if (anteproyecto.getDepartamentosDocentes() != null && !anteproyecto.getDepartamentosDocentes().isEmpty()) {
+            for (String nombreDepto : anteproyecto.getDepartamentosDocentes()) {
                 JefeDepartamento jefe = jefeRepo.findByDepartamento(nombreDepto)
                         .orElseThrow(() -> new RuntimeException(
                                 "No se encontró jefe para el departamento: " + nombreDepto
@@ -40,7 +40,7 @@ public class NotificationService {
         }
 
         // === Notificar a cada docente ===
-        List<String> correosDocentes = anteproyecto.getGmailDocente();
+        List<String> correosDocentes = anteproyecto.getCorreosDocentes();
         if (correosDocentes != null && !correosDocentes.isEmpty()) {
             for (String correo : correosDocentes) {
                 log.info("📩 [EMAIL SIMULADO - Docente]");
@@ -52,7 +52,7 @@ public class NotificationService {
         }
 
         // === Notificar a cada estudiante ===
-        List<String> correosEstudiantes = anteproyecto.getGmailEstudiante();
+        List<String> correosEstudiantes = anteproyecto.getCorreosEstudiantes();
         if (correosEstudiantes != null && !correosEstudiantes.isEmpty()) {
             for (String correo : correosEstudiantes) {
                 log.info("📩 [EMAIL SIMULADO - Estudiante]");

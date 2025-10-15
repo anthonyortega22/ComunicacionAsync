@@ -17,17 +17,17 @@ public class DataInitializer {
         if (jefeRepo.count() == 0) {
             JefeDepartamento jefe1 = new JefeDepartamento();
             jefe1.setNombre("Carlos López");
-            jefe1.setDepartamento("Ingeniería de Sistemas");
+            jefe1.setDepartamento("Sistemas");
             jefe1.setGmail("carlos.lopez@unicauca.edu.co");
 
             JefeDepartamento jefe2 = new JefeDepartamento();
             jefe2.setNombre("María Gómez");
-            jefe2.setDepartamento("Ingeniería Electrónica");
+            jefe2.setDepartamento("Electronica");
             jefe2.setGmail("maria.gomez@unicauca.edu.co");
 
             JefeDepartamento jefe3 = new JefeDepartamento();
             jefe3.setNombre("Juan Pérez");
-            jefe3.setDepartamento("Ingeniería Civil");
+            jefe3.setDepartamento("Civil");
             jefe3.setGmail("juan.perez@unicauca.edu.co");
 
             jefeRepo.save(jefe1);

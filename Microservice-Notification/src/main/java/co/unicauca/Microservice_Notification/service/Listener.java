@@ -1,18 +1,17 @@
 package co.unicauca.Microservice_Notification.service;
 
 import co.unicauca.Microservice_Notification.entity.AnteProyecto;
-import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-@Service
-@RequiredArgsConstructor
+@Component // o @Service, cualquiera sirve
 public class Listener {
 
+    @Autowired
     private NotificationService notificationService;
 
-    // Este método se ejecuta cada vez que llega un mensaje a la cola
-    @RabbitListener(queues = "anteproyectoQueue")
+    @RabbitListener(queues = "anteproyectoQueue") // reemplaza con el nombre real de tu cola
     public void recibirMensaje(AnteProyecto anteproyecto) {
         notificationService.procesarNotificacion(anteproyecto);
     }

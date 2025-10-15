@@ -9,19 +9,28 @@ import java.util.List;
 
 @Data
 public class AnteProyecto {
+    private Long id;
     private String titulo;
-    private List<String> departamento;
-    private List<String> gmailEstudiante;
-    private List<String> gmailDocente;
 
-    public AnteProyecto(String titulo, List<String> departamento, List<String> gmailEstudiante, List<String> gmailDocente) {
+    // Estos nombres deben coincidir con el JSON exacto
+    private List<String> correosEstudiantes;
+    private List<String> correosDocentes;
+    private List<String> departamentosDocentes;
+
+    public AnteProyecto(Long id, String titulo, List<String> correosEstudiantes, List<String> correosDocentes, List<String> departamentosDocentes) {
+        this.id = id;
         this.titulo = titulo;
-        this.departamento = departamento;
-        this.gmailEstudiante = gmailEstudiante;
-        this.gmailDocente = gmailDocente;
+        this.correosEstudiantes = correosEstudiantes;
+        this.correosDocentes = correosDocentes;
+        this.departamentosDocentes = departamentosDocentes;
     }
 
-    public AnteProyecto() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitulo() {
@@ -32,27 +41,27 @@ public class AnteProyecto {
         this.titulo = titulo;
     }
 
-    public List<String> getDepartamento() {
-        return departamento;
+    public List<String> getCorreosEstudiantes() {
+        return correosEstudiantes;
     }
 
-    public void setDepartamento(List<String> departamento) {
-        this.departamento = departamento;
+    public void setCorreosEstudiantes(List<String> correosEstudiantes) {
+        this.correosEstudiantes = correosEstudiantes;
     }
 
-    public List<String> getGmailEstudiante() {
-        return gmailEstudiante;
+    public List<String> getCorreosDocentes() {
+        return correosDocentes;
     }
 
-    public void setGmailEstudiante(List<String> gmailEstudiante) {
-        this.gmailEstudiante = gmailEstudiante;
+    public void setCorreosDocentes(List<String> correosDocentes) {
+        this.correosDocentes = correosDocentes;
     }
 
-    public List<String> getGmailDocente() {
-        return gmailDocente;
+    public List<String> getDepartamentosDocentes() {
+        return departamentosDocentes;
     }
 
-    public void setGmailDocente(List<String> gmailDocente) {
-        this.gmailDocente = gmailDocente;
+    public void setDepartamentosDocentes(List<String> departamentosDocentes) {
+        this.departamentosDocentes = departamentosDocentes;
     }
 }
